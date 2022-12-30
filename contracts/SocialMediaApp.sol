@@ -77,11 +77,11 @@ contract SocialMediaApp {
     }
 
     /* 
-    * @title uploadpost
+    * @title uploadPost
     * @dev log upload post
     * @param  post image, caption, tags, post date
     */
-    function uploadpost(string memory postImage, string memory caption, string memory tags,string memory postDate) public {
+    function uploadPost(string memory postImage, string memory caption, string memory tags,string memory postDate) public {
         require(bytes(postImage).length > 0,"Please Select Post");
         require(bytes(caption).length > 0,"Please Enter Caption!");
         require(bytes(tags).length > 0,"Please Enter Tag");
@@ -106,8 +106,8 @@ contract SocialMediaApp {
     * @dev log upload comment
     * @param  post id, post comment, comment date
     */
-    function uploadcomment(uint postId,string memory postComment,string memory date) public {
-        require( _postIds.current() > 0 && postId != 0 , "Post Not Awailable");
+    function uploadComment(uint postId,string memory postComment,string memory date) public {
+        require( _postIds.current() > 0 && postId != 0 , "Post Not Available");
         require(bytes(postComment).length > 0,"Please Add Comment");
 
         _commentIds.increment();
