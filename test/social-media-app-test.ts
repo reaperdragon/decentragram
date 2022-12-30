@@ -40,3 +40,5 @@ describe("SocialMedia App", async function () {
     await contractDeploy.uploadComment(1, "Awesome Design", "30 Dec 2022");
   });
 });
+
+export {};
