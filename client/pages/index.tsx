@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { useState } from 'react'
+import { toast } from 'react-toastify';
 
 const Home: NextPage = () => {
 
@@ -24,6 +25,7 @@ const Home: NextPage = () => {
       router.push('/dashboard');
     } catch (error) {
       console.log(error);
+      toast.error("Can't Connect to Wallet");
     }
   }
 
