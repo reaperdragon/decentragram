@@ -1,7 +1,11 @@
 import Head from "next/head";
 import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
-import { Header } from "../components";
+import { FundWallet, Header } from "../components";
+import { ethers } from "ethers";
+import { useBundler } from "../context/bundlrContext";
+import { ContractABI } from "../constant/ContractABI";
+import { useRouter } from "next/router";
 
 interface ImageDetail {
   image: any;
@@ -16,11 +20,29 @@ const Upload = () => {
     caption: "",
   });
 
+  const router = useRouter();
+
+  const { initialiseBundlr, bundlrInstance, balance, uploadFile } =
+    useBundler();
+
   const [file, setFile] = useState<Buffer>();
 
   const [loading, setLoading] = useState<boolean>(false);
 
   const dataRef = useRef<any>();
+
+  const getContract = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    const signer = provider.getSigner();
+
+    let contract = new ethers.Contract(
+      process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as string,
+      ContractABI,
+      signer
+    );
+    return contract;
+  };
 
   function triggerOnChange() {
     dataRef!.current!.click();
@@ -50,11 +72,84 @@ const Upload = () => {
       toast.error("Please Select a Description for Post");
     } else {
       setLoading(true);
-
-      toast.success("Nice");
-      setLoading(false);
+      const url = await uploadFile(file);
+      upload(url.data.id);
+      console.log(url);
     }
   };
+
+  const upload = async (imgURL: string) => {
+    try {
+      const contract = await getContract();
+      console.log(imgURL)
+      const uploadDate = String(new Date());
+      console.log(imgURL, imageDetails.caption, imageDetails.tag, uploadDate);
+      await contract.uploadPost(
+        imgURL,
+        imageDetails.caption,
+        imageDetails.tag,
+        uploadDate
+      );
+
+      setLoading(false);
+
+      setImageDetails({
+        image: "",
+        tag: "",
+        caption: "",
+      });
+
+      setFile(undefined);
+
+      toast.success("Post Uploaded Successfully");
+
+      router.push("/dashboard");
+    } catch (error) {
+      console.log(error);
+      toast.error("Not Posted");
+    }
+  };
+
+  if (!bundlrInstance) {
+    return (
+      <div className="justify-center items-center h-screen flex font-body flex-col">
+        <Head>
+          <title>Decentragram || Initialize Bundlr</title>
+          <link rel="icon" href="/logo-main.png" />
+        </Head>
+        <h3 className="text-4xl font-bold sm:text-xl">
+          Let&apos;s initialise Bundlr now 💱
+        </h3>
+        <button
+          className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 
+            dark:focus:ring-blue-800 font-medium rounded-full text-sm px-8 py-5 text-center mr-2 mb-2 transition-all ease-in-out delay-150 duration-150
+            hover:translate-y-1 text-1xl hover:shadow-lg hover:shadow-blue-500/80 mt-2 cursor-pointer outline-none border-none"
+          onClick={initialiseBundlr}
+        >
+          Initialise Bundlr 💸
+        </button>
+      </div>
+    );
+  }
+
+  if (
+    !balance ||
+    (Number(balance) <= 0 && !balance) ||
+    Number(balance) <= 0.06
+  ) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen ">
+        <Head>
+          <title>Decentragram || Add Funds</title>
+          <link rel="icon" href="/logo-main.png" />
+        </Head>
+        <h3 className="text-4xl font-body text-center">
+          Oops! Before Uploading Post Please Add Some Funds.🪙
+        </h3>
+        <FundWallet />
+      </div>
+    );
+  }
 
   return (
     <div>
