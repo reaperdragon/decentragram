@@ -23,7 +23,7 @@ const BundlrContextProvider = ({ children }: any): JSX.Element => {
   }, [bundlrInstance]);
 
   const initialiseBundlr = async () => {
-    const provider = new providers.Web3Provider(window.ethereum as any);
+   const provider = new providers.Web3Provider(window.ethereum as any);
     await provider._ready();
     const bundlr = new WebBundlr(
       "https://devnet.bundlr.network",

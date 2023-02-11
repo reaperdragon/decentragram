@@ -6,6 +6,12 @@ import { ethers } from "ethers";
 import { useBundler } from "../context/bundlrContext";
 import { ContractABI } from "../constant/ContractABI";
 import { useRouter } from "next/router";
+import { MetaMaskInpageProvider } from "@metamask/providers";
+declare global {
+  interface Window {
+    ethereum?: MetaMaskInpageProvider;
+  }
+}
 
 interface ImageDetail {
   image: any;
