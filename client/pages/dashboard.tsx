@@ -1,7 +1,7 @@
 import { gql, useApolloClient } from "@apollo/client";
 import Head from "next/head";
 import React, { useCallback, useEffect, useState } from "react";
-import { Header } from "../components";
+import { Header, PostContainer } from "../components";
 
 const mainURL = `https://arweave.net/`;
 
@@ -42,7 +42,11 @@ interface IPost {
 const Dashboard = () => {
   const [page, setPage] = useState<number>(0);
 
-  const [posts, setPosts] = useState<IPost[] | null>();
+const [isOpen, setIsOpen] = useState<boolean>(false);
+
+const toggle = () => setIsOpen(!isOpen);
+
+  const [posts, setPosts] = useState<IPost[] | null | undefined>();
 
   const [selectedPost, setSelectedPost] = useState<IPost | null>();
 
@@ -102,7 +106,7 @@ const Dashboard = () => {
                   onClick={() => {
                     setSelectedPost(data);
 
-                    // setIsOpen(!isOpen);
+                    setIsOpen(!isOpen);
                   }}
                 >
                   <img
@@ -145,6 +149,12 @@ const Dashboard = () => {
           )}
         </section>
       </div>
+
+      {isOpen ? (
+        <div className="fixed h-full w-full z-[100] top-0 left-0">
+          <PostContainer toggle={toggle} selectedPost={selectedPost} />
+        </div>
+      ) : null}
     </div>
   );
 };
