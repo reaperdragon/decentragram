@@ -79,7 +79,7 @@ const Profile = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [clientApollo, page]);
+  }, [clientApollo, page,addr]);
 
   useEffect(() => {
     getPosts();
