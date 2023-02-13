@@ -88,9 +88,16 @@ const toggle = () => setIsOpen(!isOpen);
       <div className="w-[705px] h-[405px] absolute left-[-353px] top-[-198px] bg-blue-800/50 blur-[150px] rounded-full"></div>
 
       <div>
+        <div className="flex gap-5 max-w-[1240px] mx-auto my-20 items-center justify-center ">
+          <h1 className="font-semibold text-5xl text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-800 md:text-3xl ">
+            Decentragram
+          </h1>
+          <img src="/logo.png" alt="logo" className="w-[50px] h-[50px]" />
+        </div>
+
         {posts?.length === 0 && (
           <div className="max-w-[1240px] h-[350px] mx-auto my-0 font-body">
-            <h1 className="text-2xl text-center">NO Images</h1>
+            <h1 className="text-2xl text-center">NO Posts</h1>
           </div>
         )}
 
