@@ -71,6 +71,19 @@ const Header = () => {
                 </a>
               </Link>
             </li>
+            <li>
+              <Link href="/profile" legacyBehavior>
+                <a
+                  className={
+                    currentRoute === "/profile"
+                      ? "text-sky-600 text-base font-medium"
+                      : "text-gray-500 font-normal"
+                  }
+                >
+                  Profile
+                </a>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

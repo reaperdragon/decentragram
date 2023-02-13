@@ -132,8 +132,6 @@ const PostContainer = ({ toggle, selectedPost }: PostContainerProps) => {
     getComments();
   }, [getComments]);
 
-  console.log(comments);
-
   return (
     <div className="w-full h-full  backdrop-blur-lg bg-black/50 flex items-center justify-center font-body ">
       <Head>
