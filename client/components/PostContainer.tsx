@@ -95,7 +95,6 @@ const PostContainer = ({ toggle, selectedPost }: PostContainerProps) => {
         setLoading(true);
         const contract = await getContract();
         const uploadDate = String(new Date());
-        console.log(selectedPost!.postId, comment, uploadDate);
         await contract.uploadComment(selectedPost!.postId, comment, uploadDate);
 
         setLoading(false);

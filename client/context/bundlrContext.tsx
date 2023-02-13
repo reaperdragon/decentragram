@@ -38,13 +38,10 @@ const BundlrContextProvider = ({ children }: any): JSX.Element => {
   };
 
   async function fundWallet(amount: number) {
-    console.log(amount);
     try {
       if (bundlrInstance) {
-        console.log(bundlrInstance);
         if (!amount) return;
         const amountParsed = parseInput(amount);
-        console.log(amountParsed);
         if (amountParsed) {
           toast.info("Adding funds please wait", { progress: 1 });
           console.log("Adding...");
@@ -83,7 +80,6 @@ const BundlrContextProvider = ({ children }: any): JSX.Element => {
 
   async function uploadFile(file: any) {
     try {
-      console.log(file);
       let tx = await bundlrInstance!.uploader.upload(file, [
         {
           name: "Content-Type",

@@ -76,8 +76,6 @@ const toggle = () => setIsOpen(!isOpen);
     getPosts();
   }, [getPosts, page]);
 
-  console.log(posts);
-
   return (
     <div className="font-body relative">
       <Head>

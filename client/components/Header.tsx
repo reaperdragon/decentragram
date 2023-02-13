@@ -29,7 +29,7 @@ const Header = () => {
             : `rounded px-6 font-body flex items-center justify-between max-w-6xl my-2 mx-auto h-16 md:px-4 md:mx-5`
         }
       >
-        <h1>Decentragram</h1>
+        <img src="/logo.png" alt="Logo" className="h-[42px] w-[42px]" />
         <div>
           <ul className="flex gap-2">
             <li>

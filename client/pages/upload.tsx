@@ -80,16 +80,16 @@ const Upload = () => {
       setLoading(true);
       const url = await uploadFile(file);
       upload(url.data.id);
-      console.log(url);
+      
     }
   };
 
   const upload = async (imgURL: string) => {
     try {
       const contract = await getContract();
-      console.log(imgURL)
+      
       const uploadDate = String(new Date());
-      console.log(imgURL, imageDetails.caption, imageDetails.tag, uploadDate);
+      
       await contract.uploadPost(
         imgURL,
         imageDetails.caption,
