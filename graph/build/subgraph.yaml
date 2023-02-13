@@ -1,0 +1,27 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: SocialMediaApp
+    network: mumbai
+    source:
+      address: "0xaD77e448FB466A43eaB901f0a24D67cb97A0cd62"
+      abi: SocialMediaApp
+      startBlock: 30340099
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - UploadComment
+        - UploadPost
+      abis:
+        - name: SocialMediaApp
+          file: SocialMediaApp\abis\SocialMediaApp.json
+      eventHandlers:
+        - event: UploadComment(uint256,uint256,string,string,address)
+          handler: handleUploadComment
+        - event: UploadPost(uint256,string,string,string,string,address)
+          handler: handleUploadPost
+      file: SocialMediaApp\SocialMediaApp.wasm

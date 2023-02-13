@@ -1,0 +1,18 @@
+type Post @entity {
+  id: ID!
+  postId: BigInt!
+  postImage: String!
+  caption: String!
+  tags: String!
+  date: String!
+  user: Bytes!
+}
+
+type Comment @entity {
+  id: ID!
+  commentId: BigInt!
+  relatedPostId: BigInt!
+  comment: String!
+  commentDate: String!
+  commentedUser: Bytes!
+}

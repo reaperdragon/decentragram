@@ -1,0 +1,180 @@
+[
+  {
+    "inputs": [{ "internalType": "string", "name": "_name", "type": "string" }],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "commentId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "relatedPostId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "comment",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "commentDate",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "commentedUser",
+        "type": "address"
+      }
+    ],
+    "name": "UploadComment",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "postId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "postImage",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "caption",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "tags",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "date",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "UploadPost",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "getComments",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "commentId", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "relatedPostId",
+            "type": "uint256"
+          },
+          { "internalType": "string", "name": "comment", "type": "string" },
+          { "internalType": "string", "name": "commentDate", "type": "string" },
+          {
+            "internalType": "address",
+            "name": "commentedUser",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct SocialMediaApp.Comment[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "name": "getPost",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "postId", "type": "uint256" },
+          { "internalType": "string", "name": "postImage", "type": "string" },
+          { "internalType": "string", "name": "caption", "type": "string" },
+          { "internalType": "string", "name": "tags", "type": "string" },
+          { "internalType": "string", "name": "date", "type": "string" },
+          { "internalType": "address", "name": "user", "type": "address" }
+        ],
+        "internalType": "struct SocialMediaApp.Post",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getPosts",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "postId", "type": "uint256" },
+          { "internalType": "string", "name": "postImage", "type": "string" },
+          { "internalType": "string", "name": "caption", "type": "string" },
+          { "internalType": "string", "name": "tags", "type": "string" },
+          { "internalType": "string", "name": "date", "type": "string" },
+          { "internalType": "address", "name": "user", "type": "address" }
+        ],
+        "internalType": "struct SocialMediaApp.Post[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "postId", "type": "uint256" },
+      { "internalType": "string", "name": "postComment", "type": "string" },
+      { "internalType": "string", "name": "date", "type": "string" }
+    ],
+    "name": "uploadComment",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "postImage", "type": "string" },
+      { "internalType": "string", "name": "caption", "type": "string" },
+      { "internalType": "string", "name": "tags", "type": "string" },
+      { "internalType": "string", "name": "postDate", "type": "string" }
+    ],
+    "name": "uploadPost",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
