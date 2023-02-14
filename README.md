@@ -53,8 +53,6 @@ git clone https://github.com/Aakrut/decentragram
 cd decentragram && npm install
 ```
 
-> Set up environment Variables I already Provided .env.example file.
-
 > Create a .env file in the root directory.
 
 > Set up required environment variables.
