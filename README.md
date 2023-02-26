@@ -106,9 +106,11 @@ NEXT_PUBLIC_GRAPHQL_URI="GRAPHQL_URL"
 Let's Run this command for dev
 
 ```shell
-npm run dev
---or--
-yarn dev
+# use npm if you prefer
+$ npm run dev
+
+# or yarn
+$ yarn dev
 ```
 
 ### Screenshots
