@@ -2,6 +2,7 @@ import { gql, useApolloClient } from "@apollo/client";
 import React, { useCallback, useEffect, useState } from "react";
 import { Header, PostContainer } from "../components";
 import Head from "next/head";
+import { truncateEthAddress } from "../utils/truncAddress";
 const mainURL = `https://arweave.net/`;
 
 const FETCH_POSTS = gql`
@@ -97,9 +98,12 @@ const Profile = () => {
       <div className="w-[705px] h-[405px] absolute left-[-353px] top-[-198px] bg-blue-800/50 blur-[150px] rounded-full"></div>
 
       <section className="max-w-[1240px] h-[100px] mx-auto my-0 font-body">
-        <h2 className="text-2xl text-center font-bold my-1 text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-800 ">
+        <h2 className="text-3xl text-center font-bold my-1 text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-800 ">
           My Profile
         </h2>
+        <h3 className="text-2xl text-center font-bold my-1 text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-500 ">
+          {truncateEthAddress(addr!)}
+        </h3>
       </section>
 
       <div>
